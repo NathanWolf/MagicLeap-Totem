@@ -9,20 +9,23 @@ public class Grounded : MonoBehaviour {
 
 	// Components
 	private Rigidbody _body;
-
-	// Constants
-	private float _distanceToBase;
+	private Collider _collision;
+	private Vector3 _collisionExtents;
 
 	// State
 	private bool _uprightDirty;
 	private bool _upright;
 	private bool _groundedDirty;
 	private bool _grounded;
+	private int _layerMask;
 
 	private void Start () {
 		_body = GetComponent<Rigidbody>();
-		var collision = GetComponent<Collider>();
-		_distanceToBase = collision.bounds.extents.y;
+		_collision = GetComponent<Collider>();
+		_collisionExtents = _collision.bounds.extents;
+		_collisionExtents.y = GroundDistance;
+		_layerMask = 1 << gameObject.layer;
+		_layerMask = ~_layerMask;
 	}
 
 	private void FixedUpdate() {
@@ -41,11 +44,15 @@ public class Grounded : MonoBehaviour {
 
 	public bool IsGrounded() {
 		if (!_groundedDirty) return _grounded;
-		
-		// return Physics.CheckBox(transform.position, bounds.extents.x, distanceToBase + 0.1);
-		// return Physics.CheckCapsule(collider.bounds.center,new Vector3(collider.bounds.center.x,collider.bounds.min.y-0.1f,collider.bounds.center.z),0.18f));
-		_grounded = Physics.Raycast(transform.position, -Vector3.up, _distanceToBase + 0.1f);
+
+		var queryLocation = transform.position;
+		queryLocation.y = _collision.bounds.min.y;
+		_grounded = Physics.CheckBox(queryLocation, _collisionExtents, Quaternion.identity, _layerMask);
 		_groundedDirty = false;
+		
+		//ExtDebug.DrawBox(_collision.bounds.center, _collision.bounds.extents, Quaternion.identity, Color.green);
+		//ExtDebug.DrawBox(queryLocation, _collisionExtents, Quaternion.identity, Color.red);
+		
 		return _grounded;
 	}
 }

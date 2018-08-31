@@ -24,7 +24,8 @@ public class Hopping : MonoBehaviour {
 
 	private void FixedUpdate()
 	{
-		if (Random.Range(0, 10) > 1) return;
+		if (Time.time < _lastJump + JumpCooldown) return;
+		_lastJump = Time.time;
 		if (!_ground.IsGrounded() || !_ground.IsUpright()) return;
 		if (_direction.CheckDirection()) {
 			Jump();	
@@ -35,9 +36,6 @@ public class Hopping : MonoBehaviour {
 	}
 
 	private void Jump() {
-		//body.velocity = Vector3.up * 2;
-		if (Time.time < _lastJump + JumpCooldown) return;
-		_lastJump = Time.time;
 		var jump = Vector3.up * JumpStrength + _direction.GetDirection() * Speed;
 		_body.AddForce(jump.x, jump.y, jump.z, ForceMode.Impulse);
 	}

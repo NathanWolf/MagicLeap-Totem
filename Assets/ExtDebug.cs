@@ -39,20 +39,20 @@ public static class ExtDebug
 
     public static void DrawBox(Box box, Color color)
     {
-        Debug.DrawLine(box.frontTopLeft, box.frontTopRight, color);
-        Debug.DrawLine(box.frontTopRight, box.frontBottomRight, color);
-        Debug.DrawLine(box.frontBottomRight, box.frontBottomLeft, color);
-        Debug.DrawLine(box.frontBottomLeft, box.frontTopLeft, color);
+        Debug.DrawLine(box.frontTopLeft, box.frontTopRight, color, 1.0f, false);
+        Debug.DrawLine(box.frontTopRight, box.frontBottomRight, color, 1.0f, false);
+        Debug.DrawLine(box.frontBottomRight, box.frontBottomLeft, color, 1.0f, false);
+        Debug.DrawLine(box.frontBottomLeft, box.frontTopLeft, color, 1.0f, false);
 
-        Debug.DrawLine(box.backTopLeft, box.backTopRight, color);
-        Debug.DrawLine(box.backTopRight, box.backBottomRight, color);
-        Debug.DrawLine(box.backBottomRight, box.backBottomLeft, color);
-        Debug.DrawLine(box.backBottomLeft, box.backTopLeft, color);
+        Debug.DrawLine(box.backTopLeft, box.backTopRight, color, 1.0f, false);
+        Debug.DrawLine(box.backTopRight, box.backBottomRight, color, 1.0f, false);
+        Debug.DrawLine(box.backBottomRight, box.backBottomLeft, color, 1.0f, false);
+        Debug.DrawLine(box.backBottomLeft, box.backTopLeft, color, 1.0f, false);
 
-        Debug.DrawLine(box.frontTopLeft, box.backTopLeft, color);
-        Debug.DrawLine(box.frontTopRight, box.backTopRight, color);
-        Debug.DrawLine(box.frontBottomRight, box.backBottomRight, color);
-        Debug.DrawLine(box.frontBottomLeft, box.backBottomLeft, color);
+        Debug.DrawLine(box.frontTopLeft, box.backTopLeft, color, 1.0f, false);
+        Debug.DrawLine(box.frontTopRight, box.backTopRight, color, 1.0f, false);
+        Debug.DrawLine(box.frontBottomRight, box.backBottomRight, color, 1.0f, false);
+        Debug.DrawLine(box.frontBottomLeft, box.backBottomLeft, color, 1.0f, false);
     }
 
     public struct Box
