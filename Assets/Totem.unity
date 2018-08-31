@@ -296,6 +296,11 @@ GameObject:
   - component: {fileID: 1308723711}
   - component: {fileID: 1308723712}
   - component: {fileID: 1308723714}
+  - component: {fileID: 1308723716}
+  - component: {fileID: 1308723715}
+  - component: {fileID: 1308723719}
+  - component: {fileID: 1308723718}
+  - component: {fileID: 1308723717}
   m_Layer: 0
   m_Name: Totem
   m_TagString: Untagged
@@ -356,10 +361,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8244917e9374406bd10c0ae719c78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
-  jumpStrength: 2
-  uprightDegrees: 10
+  speed: 2
+  jumpStrength: 10
   jumpCooldown: 0.5
+--- !u!114 &1308723715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1308723710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e5db14a63ac42679ffd480488f0c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1308723716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1308723710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edaa1fff49e6d4a5eb2ed5360408abb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 5
+--- !u!114 &1308723717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1308723710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e609ab562414dd3b80a7794af2f9c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundDistance: 0.1
+  uprightDegrees: 10
+--- !u!114 &1308723718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1308723710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9bce36f761c841ada11830d6664144b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationVelocity: 0.1
+  lookAhead: 0.1
+--- !u!114 &1308723719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1308723710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce857e48aca7c4b56a1cc0cf47fc96e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1687258581
 GameObject:
   m_ObjectHideFlags: 0
