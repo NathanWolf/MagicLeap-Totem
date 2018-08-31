@@ -1,53 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 // This is a helper class that allows for grounding and upright checks
 public class Grounded : MonoBehaviour {
 
 	// Config constants
-	public float groundDistance = 0.1f;
-	public float uprightDegrees = 10.0f;
+	public float GroundDistance = 0.1f;
+	public float UprightDegrees = 10.0f;
 
 	// Components
-	Rigidbody body;
+	private Rigidbody _body;
 
 	// Constants
-	float distanceToBase;
+	private float _distanceToBase;
 
 	// State
-	bool uprightDirty;
-	bool upright;
-	bool groundedDirty;
-	bool grounded;
+	private bool _uprightDirty;
+	private bool _upright;
+	private bool _groundedDirty;
+	private bool _grounded;
 
-	void Start () {
-		body = GetComponent<Rigidbody>();
-		Collider collision = GetComponent<Collider>();
-		distanceToBase = collision.bounds.extents.y;
+	private void Start () {
+		_body = GetComponent<Rigidbody>();
+		var collision = GetComponent<Collider>();
+		_distanceToBase = collision.bounds.extents.y;
 	}
 
-	void FixedUpdate() {
-		uprightDirty = true;
-		groundedDirty = true;
+	private void FixedUpdate() {
+		_uprightDirty = true;
+		_groundedDirty = true;
 	}
 
 	public bool IsUpright() {
-		if (uprightDirty) {
-			upright = (body.rotation.eulerAngles.z < uprightDegrees || body.rotation.eulerAngles.z > 360 - uprightDegrees) &&
-					  (body.rotation.eulerAngles.x < uprightDegrees || body.rotation.eulerAngles.x > 360 - uprightDegrees);
-			uprightDirty = false;
-		}
-		return upright;
+		if (!_uprightDirty) return _upright;
+		
+		_upright = (_body.rotation.eulerAngles.z < UprightDegrees || _body.rotation.eulerAngles.z > 360 - UprightDegrees) &&
+		           (_body.rotation.eulerAngles.x < UprightDegrees || _body.rotation.eulerAngles.x > 360 - UprightDegrees);
+		_uprightDirty = false;
+		return _upright;
 	}
 
 	public bool IsGrounded() {
-		if (groundedDirty) {
-			// return Physics.CheckBox(transform.position, bounds.extents.x, distanceToBase + 0.1);
-			// return Physics.CheckCapsule(collider.bounds.center,new Vector3(collider.bounds.center.x,collider.bounds.min.y-0.1f,collider.bounds.center.z),0.18f));
-			grounded = Physics.Raycast(transform.position, -Vector3.up, distanceToBase + 0.1f);
-			groundedDirty = false;
-		}
-		return grounded;
+		if (!_groundedDirty) return _grounded;
+		
+		// return Physics.CheckBox(transform.position, bounds.extents.x, distanceToBase + 0.1);
+		// return Physics.CheckCapsule(collider.bounds.center,new Vector3(collider.bounds.center.x,collider.bounds.min.y-0.1f,collider.bounds.center.z),0.18f));
+		_grounded = Physics.Raycast(transform.position, -Vector3.up, _distanceToBase + 0.1f);
+		_groundedDirty = false;
+		return _grounded;
 	}
 }

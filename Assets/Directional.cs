@@ -1,53 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 // This is a base behavior that allows for grounding and upright checks
 public class Directional : MonoBehaviour {
 
 	// Config constants
-	public float rotationVelocity = 0.1f;
-	public float lookAhead = 0.1f;
+	public float RotationVelocity = 0.1f;
+	public float LookAhead = 0.1f;
 
 	// Constants
-	float distanceToSide;
+	private float _distanceToSide;
 
 	// State
-	Vector3 direction;
+	private Vector3 _direction;
 
-	void Start () {
-		Collider collision = GetComponent<Collider>();
-		distanceToSide = (collision.bounds.extents.x + collision.bounds.extents.z) / 2;
+	private void Start () {
+		var collision = GetComponent<Collider>();
+		_distanceToSide = (collision.bounds.extents.x + collision.bounds.extents.z) / 2;
 		RandomDirection();
 	}
 
-	void FixedUpdate() {
-		checkFacing();
+	private void FixedUpdate() {
+		CheckFacing();
 	}
 
-	void checkFacing() {
+	private void CheckFacing() {
 		// TODO
 	}
 
 	public void RandomDirection() {
-		direction = new Vector2(Random.value, Random.value);
- 		direction.Normalize();
+		_direction = new Vector2(Random.value, Random.value);
+ 		_direction.Normalize();
 	}
 
-	public bool isFacingDirection() {
+	public bool IsFacingDirection() {
 		// TODO ...
 		return true;
 	}
 
 	public bool CheckDirection() {
-		return !Physics.Raycast(transform.position, direction, distanceToSide + lookAhead);
+		return !Physics.Raycast(transform.position, _direction, _distanceToSide + LookAhead);
 	}
 
-	public Vector3 getDirection() {
-		return direction;
+	public Vector3 GetDirection() {
+		return _direction;
 	}
 
-	public void setDirection(Vector3 d) {
-		direction = d;
+	public void SetDirection(Vector3 d) {
+		_direction = d;
 	}
 }
