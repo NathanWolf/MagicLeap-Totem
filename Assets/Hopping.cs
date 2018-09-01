@@ -7,6 +7,7 @@ public class Hopping : MonoBehaviour {
 	public float Speed = 2.0f;
 	public float JumpStrength = 10.0f;
 	public float JumpCooldown = 0.5f;
+	public float TurnAmount = 1;
 
 	// Components
 	private Rigidbody _body;
@@ -24,19 +25,24 @@ public class Hopping : MonoBehaviour {
 
 	private void FixedUpdate()
 	{
-		if (Time.time < _lastJump + JumpCooldown) return;
-		_lastJump = Time.time;
 		if (!_ground.IsGrounded() || !_ground.IsUpright()) return;
-		if (_direction.CheckDirection()) {
+		if (_direction.CheckCollision()) {
+			if (!_direction.IsFacingDirection() || IsJumpOnCooldown()) return;
 			Jump();	
+			_lastJump = Time.time;
 		} else {
-			Debug.Log("Change direction");
-			_direction.RandomDirection();
+			_direction.ChangeDirection(TurnAmount);
 		}
+	}
+
+	private bool IsJumpOnCooldown()
+	{
+		return (Time.time < _lastJump + JumpCooldown);
 	}
 
 	private void Jump() {
 		var jump = Vector3.up * JumpStrength + _direction.GetDirection() * Speed;
 		_body.AddForce(jump.x, jump.y, jump.z, ForceMode.Impulse);
+		_lastJump = Time.time;
 	}
 }
