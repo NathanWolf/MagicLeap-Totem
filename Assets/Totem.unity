@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 1308723716}
   - component: {fileID: 1308723715}
   - component: {fileID: 1308723719}
+  - component: {fileID: 1308723720}
   m_Layer: 9
   m_Name: Totem
   m_TagString: Untagged
@@ -422,6 +423,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce857e48aca7c4b56a1cc0cf47fc96e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1308723720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1308723710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43bf1743e69e426ea10e3cd3c4ae9b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1687258581
@@ -704,6 +716,30 @@ Prefab:
     - target: {fileID: 100006, guid: 1accea080e9494c1d924559110620dbd, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100078, guid: 1accea080e9494c1d924559110620dbd, type: 3}
+      propertyPath: m_Name
+      value: Head
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 1accea080e9494c1d924559110620dbd, type: 3}
+      propertyPath: m_Name
+      value: Pupil1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1accea080e9494c1d924559110620dbd, type: 3}
+      propertyPath: m_Name
+      value: Pupil2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100068, guid: 1accea080e9494c1d924559110620dbd, type: 3}
+      propertyPath: m_Name
+      value: Body
+      objectReference: {fileID: 0}
+    - target: {fileID: 100074, guid: 1accea080e9494c1d924559110620dbd, type: 3}
+      propertyPath: m_Name
+      value: Body2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100076, guid: 1accea080e9494c1d924559110620dbd, type: 3}
+      propertyPath: m_Name
+      value: Body3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1accea080e9494c1d924559110620dbd, type: 3}
