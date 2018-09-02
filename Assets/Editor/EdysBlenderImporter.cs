@@ -13,9 +13,7 @@ http://www.edy.es
 using UnityEngine;
 using UnityEditor;
 using System.IO;
-using System.Collections;
 using System.Collections.Generic;
-
 
 public class EdysBlenderImporter : AssetPostprocessor
 	{
@@ -26,6 +24,7 @@ public class EdysBlenderImporter : AssetPostprocessor
 	private bool m_floatFix = true;
 	private bool m_postMods = true;
 	private bool m_forceFixRoot = false;
+	private bool m_applyToAll = true;
 
 	private float m_floatFixThreshold = 1.53e-05f;
 
@@ -39,49 +38,57 @@ public class EdysBlenderImporter : AssetPostprocessor
 		// Imported objects can be located in a subfolder named with the import commands.
 		// If both path and file are used then the last one has preference.
 
-		int i1 = filePath.LastIndexOf('[');
-		int i2 = filePath.LastIndexOf(']');
-		if (i1 < 0 || i2 < 0 || i1 >= i2) return;
-
-		string[] tokens = filePath.Substring(i1+1, i2-i1-1).Split('.');
-		if (tokens.Length == 0 || tokens[0] != "importer") return;
-
 		string options = "";
+		int i1 = 0;
+		int i2 = 0;
+		if (!m_applyToAll)
+		{
+			
+			i1 = filePath.LastIndexOf('[');
+			i2 = filePath.LastIndexOf(']');
+			if (i1 < 0 || i2 < 0 || i1 >= i2) return;
 
-		for (int i=1, c=tokens.Length; i<c; i++)
+			string[] tokens = filePath.Substring(i1+1, i2-i1-1).Split('.');
+			if (tokens.Length == 0 || tokens[0] != "importer") return;
+
+
+			for (int i=1, c=tokens.Length; i<c; i++)
 			{
-			string token = tokens[i];
+				string token = tokens[i];
 
-			switch (token)
+				switch (token)
 				{
-				case "skipfix": m_fixBlender = false; break;
-				case "forcefix": m_fixBlender = true; break;
-				case "opt": m_optimize = true; break;
-				case "zreverse": m_zReverse = true; break;
-				case "noanimfix": m_animFix = false; break;
-				case "nofloatfix": m_floatFix = false; break;
-				case "nomods": m_postMods = false; break;
-				case "forcefixroot": m_forceFixRoot = true; break;
+					case "skipfix": m_fixBlender = false; break;
+					case "forcefix": m_fixBlender = true; break;
+					case "opt": m_optimize = true; break;
+					case "zreverse": m_zReverse = true; break;
+					case "noanimfix": m_animFix = false; break;
+					case "nofloatfix": m_floatFix = false; break;
+					case "nomods": m_postMods = false; break;
+					case "forcefixroot": m_forceFixRoot = true; break;
 
-				default:
-					token = "";
-					break;
+					default:
+						token = "";
+						break;
 				}
 
-			if (token != "") options += token + " ";
+				if (token != "") options += token + " ";
 			}
+		}
 
 		// Process the file with the specified options
 
 		if (m_fixBlender || m_optimize)
 			{
 			// Clean object's name (just for debug purposes, no effect on the imported object's name)
-
-			string name = go.name.ToLowerInvariant();
-			i1 = name.IndexOf("[importer");
-			i2 = name.IndexOf("]");
-			if (i1 >= 0 && i2 >= 0 && i1 < i2)
-				go.name = name.Remove(i1, i2-i1+1).Trim(new []{' ','_'});
+			if (!m_applyToAll)
+			{	
+				string name = go.name.ToLowerInvariant();
+				i1 = name.IndexOf("[importer");
+				i2 = name.IndexOf("]");
+				if (i1 >= 0 && i2 >= 0 && i1 < i2)
+					go.name = name.Remove(i1, i2-i1+1).Trim(new []{' ','_'});
+			}
 
 			// Go processing
 
