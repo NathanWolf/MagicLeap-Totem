@@ -54,11 +54,12 @@ public class Directional : MonoBehaviour {
 
 	public bool IsFacingDirection()
 	{
+		return true;
 		/*
 		Debug.Log("Facing: " + Mathf.DeltaAngle(_body.rotation.eulerAngles.y, Quaternion.LookRotation(_direction).eulerAngles.y) + " from " + 
 		          _body.rotation.eulerAngles.y + " and " + Quaternion.LookRotation(_direction).eulerAngles.y + " direction: " + _direction);
 	    */
-		return Mathf.Abs(Mathf.DeltaAngle(_body.rotation.eulerAngles.y, Quaternion.LookRotation(_direction).eulerAngles.y)) < DirectionTolerance;
+		//return Mathf.Abs(Mathf.DeltaAngle(_body.rotation.eulerAngles.y, Quaternion.LookRotation(_direction).eulerAngles.y)) < DirectionTolerance;
 	}
 
 	public bool CheckCollision()
