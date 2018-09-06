@@ -301,6 +301,8 @@ GameObject:
   - component: {fileID: 1308723715}
   - component: {fileID: 1308723719}
   - component: {fileID: 1308723720}
+  - component: {fileID: 1308723721}
+  - component: {fileID: 1308723716}
   m_Layer: 9
   m_Name: Totem
   m_TagString: Untagged
@@ -376,6 +378,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e5db14a63ac42679ffd480488f0c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1308723716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1308723710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72a59c9bee0aa4023b4905d66acbc1c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RequiredConfidence: 0.9
 --- !u!114 &1308723717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,6 +437,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43bf1743e69e426ea10e3cd3c4ae9b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1308723721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1308723710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530faf594e0304a51a14b4f11a3f6d33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trackedKeyPoses: 0
+  _keyPointFilterLevel: 2
+  _PoseFilterLevel: 2
 --- !u!1 &1687258581
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,7 +527,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.03, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
