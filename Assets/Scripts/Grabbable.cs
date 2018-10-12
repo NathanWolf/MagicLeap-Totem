@@ -4,13 +4,16 @@ using UnityEngine.XR.MagicLeap;
 public class Grabbable : MonoBehaviour
 {
 	public float RequiredConfidence = 0.9f;
+	public float GrabDistance = 2.0f;
 	
 	private Rigidbody _body;
+	private bool grabbed;
 	
 	// Use this for initialization
 	private void Start () {
 		_body = GetComponent<Rigidbody>();
 		_body.useGravity = false;
+		grabbed = true;
 	}
 	
 	// Update is called once per frame
@@ -29,11 +32,18 @@ public class Grabbable : MonoBehaviour
 		switch (pose)
 		{
 			case MLHandKeyPose.C:
+				grabbed = false;
 				_body.useGravity = true;
 				break;
 			case MLHandKeyPose.Ok:
+				grabbed = true;
 				_body.useGravity = false;
 				break;
+		}
+
+		if (grabbed)
+		{
+			_body.transform.position = Camera.main.transform.position + Camera.main.transform.forward * GrabDistance;
 		}
 	}
 
