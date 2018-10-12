@@ -32,7 +32,8 @@ public class Hopping : MonoBehaviour {
 	{
 		if (!_ground.IsGrounded() || !_ground.IsUpright()) return;
 		if (_direction.CheckCollision() && _direction.CheckFloor(ForwardJump, MaxFall, MaxJump)) {
-			if (!_direction.IsFacingDirection() || IsJumpOnCooldown()) return;
+			if (IsJumpOnCooldown()) return;
+			_direction.UpdateBody();
 			Jump();	
 			_lastJump = Time.time;
 		} else {
