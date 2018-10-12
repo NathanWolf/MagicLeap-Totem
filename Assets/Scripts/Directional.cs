@@ -5,6 +5,7 @@ public class Directional : MonoBehaviour {
 
 	// Config constants
 	public float DirectionTolerance = 5;
+	public float ForwardDistance = 2;
 
 	// Components
 	private Collider _collision;
@@ -66,9 +67,24 @@ public class Directional : MonoBehaviour {
 	{
 		var queryLocation = _collision.bounds.center;
 		queryLocation += _direction * _collisionOffset;
-		Debug.DrawLine(_collision.bounds.center, _collision.bounds.center + _direction * 2, Color.green, 10.0f, false);
+		Debug.DrawLine(_collision.bounds.center, _collision.bounds.center + _direction * ForwardDistance, Color.green, 10.0f, false);
 		//ExtDebug.DrawBox(queryLocation, _collisionExtents, Quaternion.identity, Color.red);
 		return !Physics.CheckBox(queryLocation, _collisionExtents, Quaternion.identity, _layerMask);
+	}
+
+	public bool CheckFloor(float distance, float maxFall, float maxJump)
+	{
+		var queryLocation = _collision.bounds.center;
+		queryLocation += _direction * distance;
+		Debug.DrawLine(queryLocation, queryLocation + Vector3.down * maxFall, Color.yellow, 8.0f, false);
+		if (Physics.Raycast(queryLocation, Vector3.down, maxFall))
+		{
+			return true;
+		}
+
+		queryLocation += Vector3.up * maxJump;
+		Debug.DrawLine(queryLocation, queryLocation + Vector3.down * maxJump, Color.magenta, 8.0f, false);
+		return Physics.Raycast(queryLocation, Vector3.down, maxJump);
 	}
 
 	public Vector3 GetDirection() {

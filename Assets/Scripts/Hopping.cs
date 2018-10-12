@@ -8,6 +8,11 @@ public class Hopping : MonoBehaviour {
 	public float JumpStrength = 10.0f;
 	public float JumpCooldown = 0.5f;
 	public float TurnAmount = 1;
+	public float MaxFall = 5.0f;
+	
+	// TODO: Is it possible to calculate these automatically based on JumpStrength?
+	public float MaxJump = 1.0f;
+	public float ForwardJump = 1.0f;
 
 	// Components
 	private Rigidbody _body;
@@ -26,7 +31,7 @@ public class Hopping : MonoBehaviour {
 	private void FixedUpdate()
 	{
 		if (!_ground.IsGrounded() || !_ground.IsUpright()) return;
-		if (_direction.CheckCollision()) {
+		if (_direction.CheckCollision() && _direction.CheckFloor(ForwardJump, MaxFall, MaxJump)) {
 			if (!_direction.IsFacingDirection() || IsJumpOnCooldown()) return;
 			Jump();	
 			_lastJump = Time.time;
