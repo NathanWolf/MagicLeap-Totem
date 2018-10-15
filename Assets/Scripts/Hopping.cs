@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Random = UnityEngine.Random;
 
 // This behavior makes a body randomly hop around
 public class Hopping : MonoBehaviour {
@@ -9,7 +10,13 @@ public class Hopping : MonoBehaviour {
 	public float JumpCooldown = 0.5f;
 	public float TurnAmount = 1;
 	public float MaxFall = 5.0f;
-	public AudioClip bounceSound;
+	public float LandSoundCooldown = 0.1f;
+	public AudioClip BounceSound;
+	public float BounceMinPitch = 0.5f;
+	public float BounceMaxPitch = 1.5f;
+	public AudioClip LandSound;
+	public float LandMinPitch = 0.5f;
+	public float LandMaxPitch = 1.5f;
 	
 	// TODO: Is it possible to calculate these automatically based on JumpStrength?
 	public float MaxJump = 1.0f;
@@ -19,9 +26,12 @@ public class Hopping : MonoBehaviour {
 	private Rigidbody _body;
 	private Directional _direction;
 	private Grounded _ground;
+	private AudioSource _bounceSource;
+	private AudioSource _landSource;
 
 	// State
 	private float _lastJump;
+	private float _lastCollision;
 
 	private void Start () {
 		_body = GetComponent<Rigidbody>();
@@ -51,9 +61,32 @@ public class Hopping : MonoBehaviour {
 		var jump = Vector3.up * JumpStrength + _direction.GetDirection() * Speed;
 		_body.AddForce(jump.x, jump.y, jump.z, ForceMode.Impulse);
 		_lastJump = Time.time;
-		if (bounceSound != null)
+		if (BounceSound != null)
 		{
-			AudioSource.PlayClipAtPoint(bounceSound, _body.position);
+			if (_bounceSource == null)
+			{
+				_bounceSource = gameObject.AddComponent<AudioSource>();
+				_bounceSource.clip = BounceSound;
+			}
+
+			_bounceSource.pitch = Random.Range(BounceMinPitch, BounceMaxPitch);
+			_bounceSource.Play();
+		}
+	}
+
+	private void OnCollisionEnter(Collision other)
+	{
+		if (LandSound != null && Time.time > _lastCollision + LandSoundCooldown)
+		{
+			if (_landSource == null)
+			{
+				_landSource = gameObject.AddComponent<AudioSource>();
+				_landSource.clip = LandSound;
+			}
+
+			_landSource.pitch = Random.Range(LandMinPitch, LandMaxPitch);
+			_landSource.Play();
+			_lastCollision = Time.time;
 		}
 	}
 }
