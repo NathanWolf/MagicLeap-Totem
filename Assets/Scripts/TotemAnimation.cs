@@ -25,6 +25,6 @@ public class TotemAnimation : MonoBehaviour
     private void SpinHead()
     {
         _head.rotation = Quaternion.LookRotation(_direction.GetDirection()) * Quaternion.Inverse(_body.rotation);
-        Debug.Log(" Head: " + _head.rotation + " from " + _direction.GetDirection() + " and " + _body.rotation);
+        // Debug.Log(" Head: " + _head.rotation + " from " + _direction.GetDirection() + " and " + _body.rotation);
     }
 }
