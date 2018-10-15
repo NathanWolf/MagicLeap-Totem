@@ -367,6 +367,7 @@ MonoBehaviour:
   JumpCooldown: 0.5
   TurnAmount: 1
   MaxFall: 5
+  bounceSound: {fileID: 8300000, guid: 44aedfe9de216410aa349adf02cc414b, type: 3}
   MaxJump: 1
   ForwardJump: 1
 --- !u!114 &1308723715

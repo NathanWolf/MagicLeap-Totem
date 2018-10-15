@@ -9,6 +9,7 @@ public class Hopping : MonoBehaviour {
 	public float JumpCooldown = 0.5f;
 	public float TurnAmount = 1;
 	public float MaxFall = 5.0f;
+	public AudioClip bounceSound;
 	
 	// TODO: Is it possible to calculate these automatically based on JumpStrength?
 	public float MaxJump = 1.0f;
@@ -50,5 +51,9 @@ public class Hopping : MonoBehaviour {
 		var jump = Vector3.up * JumpStrength + _direction.GetDirection() * Speed;
 		_body.AddForce(jump.x, jump.y, jump.z, ForceMode.Impulse);
 		_lastJump = Time.time;
+		if (bounceSound != null)
+		{
+			AudioSource.PlayClipAtPoint(bounceSound, _body.position);
+		}
 	}
 }
