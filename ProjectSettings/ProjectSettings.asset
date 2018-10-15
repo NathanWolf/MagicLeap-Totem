@@ -668,7 +668,7 @@ PlayerSettings:
     m_ModelFolderPath: 
     m_PortalFolderPath: 
   luminCert:
-    m_CertPath: 
+    m_CertPath: /Users/nathan/Documents/MagicLeap/Keys/dev/elmakersdev.cert
     m_PrivateKeyPath: 
   luminIsChannelApp: 0
   luminVersion:
