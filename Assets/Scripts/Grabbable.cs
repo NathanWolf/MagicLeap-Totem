@@ -35,7 +35,7 @@ public class Grabbable : MonoBehaviour
 				grabbed = false;
 				_body.useGravity = true;
 				break;
-			case MLHandKeyPose.Ok:
+			case MLHandKeyPose.Pinch:
 				grabbed = true;
 				_body.useGravity = false;
 				break;
@@ -45,31 +45,5 @@ public class Grabbable : MonoBehaviour
 		{
 			_body.transform.position = Camera.main.transform.position + Camera.main.transform.forward * GrabDistance;
 		}
-	}
-
-	private void OnEnable()
-	{
-		MLResult result = MLHands.Start();
-		if (!result.IsOk)
-		{
-			Debug.LogError("Error GesturesExample starting MLHands, disabling script.");
-			enabled = false;
-		}
-		else
-		{
-			MLHandKeyPose[] poseSet = {MLHandKeyPose.C, MLHandKeyPose.Ok};
-			var status = MLHands.KeyPoseManager.EnableKeyPoses(poseSet, true, true);
-			if (!status)
-			{
-				Debug.LogError("HandTracking failed during a call to enable tracked KeyPoses.\n"
-				               + "Disabling HandTracking component.");
-				enabled = false;
-			}
-		}
-	}
-
-	private void OnDisable()
-	{
-		MLHands.Stop();
 	}
 }
