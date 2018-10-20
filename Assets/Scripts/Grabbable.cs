@@ -33,10 +33,12 @@ public class Grabbable : MonoBehaviour
 		{
 			case MLHandKeyPose.C:
 				grabbed = false;
+				_body.AddForce(Vector3.zero);
 				_body.useGravity = true;
 				break;
 			case MLHandKeyPose.Pinch:
 				grabbed = true;
+				_body.AddForce(Vector3.zero);
 				_body.useGravity = false;
 				break;
 		}
