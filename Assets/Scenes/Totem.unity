@@ -415,8 +415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8244917e9374406bd10c0ae719c78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2
-  JumpStrength: 10
+  Speed: 1
+  JumpStrength: 4
   JumpCooldown: 0.5
   TurnAmount: 1
   MaxFall: 5
@@ -424,9 +424,11 @@ MonoBehaviour:
   BounceSound: {fileID: 8300000, guid: 99981978860ea432c9cf2935e0cbba82, type: 3}
   BounceMinPitch: 0.5
   BounceMaxPitch: 1.5
+  BounceVolume: 0.4
   LandSound: {fileID: 8300000, guid: d614f10bb6b9743809af2f944073a198, type: 3}
   LandMinPitch: 0.5
   LandMaxPitch: 1.5
+  LandVolume: 1
   MaxJump: 1
   ForwardJump: 1
 --- !u!114 &1308723715

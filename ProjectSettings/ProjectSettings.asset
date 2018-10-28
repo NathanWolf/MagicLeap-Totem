@@ -40,7 +40,8 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos: []
-  m_VirtualRealitySplashScreen: {fileID: 0}
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 8a65ecf42a9c841bd8308f6718170b7a,
+    type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
@@ -673,8 +674,8 @@ PlayerSettings:
     UNet: 1
   luminIcon:
     m_Name: 
-    m_ModelFolderPath: 
-    m_PortalFolderPath: 
+    m_ModelFolderPath: /Users/nathan/Documents/Code/Unity/Totem/Icon
+    m_PortalFolderPath: /Users/nathan/Documents/Code/Unity/Totem/Icon/Portal
   luminCert:
     m_CertPath: /Users/nathan/Documents/MagicLeap/Keys/dev/elmakersdev.cert
     m_PrivateKeyPath: 

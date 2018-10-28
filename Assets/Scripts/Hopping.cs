@@ -14,9 +14,11 @@ public class Hopping : MonoBehaviour {
 	public AudioClip BounceSound;
 	public float BounceMinPitch = 0.5f;
 	public float BounceMaxPitch = 1.5f;
+	public float BounceVolume = 1.0f;
 	public AudioClip LandSound;
 	public float LandMinPitch = 0.5f;
 	public float LandMaxPitch = 1.5f;
+	public float LandVolume = 1.0f;
 	
 	// TODO: Is it possible to calculate these automatically based on JumpStrength?
 	public float MaxJump = 1.0f;
@@ -67,6 +69,7 @@ public class Hopping : MonoBehaviour {
 			{
 				_bounceSource = gameObject.AddComponent<AudioSource>();
 				_bounceSource.clip = BounceSound;
+				_bounceSource.volume = BounceVolume;
 			}
 
 			_bounceSource.pitch = Random.Range(BounceMinPitch, BounceMaxPitch);
@@ -82,6 +85,7 @@ public class Hopping : MonoBehaviour {
 			{
 				_landSource = gameObject.AddComponent<AudioSource>();
 				_landSource.clip = LandSound;
+				_landSource.volume = LandVolume;
 			}
 
 			_landSource.pitch = Random.Range(LandMinPitch, LandMaxPitch);

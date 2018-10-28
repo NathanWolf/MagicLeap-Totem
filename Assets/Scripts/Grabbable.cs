@@ -32,14 +32,22 @@ public class Grabbable : MonoBehaviour
 		switch (pose)
 		{
 			case MLHandKeyPose.C:
-				grabbed = false;
-				_body.AddForce(Vector3.zero);
-				_body.useGravity = true;
+				if (grabbed)
+				{
+					grabbed = false;
+					_body.velocity = Vector3.zero;
+					_body.angularVelocity = Vector3.zero;
+					_body.useGravity = true;
+				}
 				break;
 			case MLHandKeyPose.Pinch:
-				grabbed = true;
-				_body.AddForce(Vector3.zero);
-				_body.useGravity = false;
+				if (!grabbed)
+				{
+					grabbed = true;
+					_body.useGravity = false;
+					_body.velocity = Vector3.zero;
+					_body.angularVelocity = Vector3.zero;
+				}
 				break;
 		}
 
