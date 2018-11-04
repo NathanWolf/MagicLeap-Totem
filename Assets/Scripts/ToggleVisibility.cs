@@ -3,7 +3,12 @@ using UnityEngine.XR.MagicLeap;
 
 public class ToggleVisibility : MonoBehaviour {
 	private Renderer _renderer;
+	public Material occlusion;
+	public Material wireframe;
 	public float RequiredConfidence = 0.9f;
+
+
+	private Material[] _materials; 
 
 	// Use this for initialization
 	void Start ()
@@ -25,11 +30,15 @@ public class ToggleVisibility : MonoBehaviour {
 
 		switch (pose)
 		{
-			case MLHandKeyPose.Fist:
-				_renderer.enabled = true;
+			case MLHandKeyPose.L:
+				Material[] materials1 = _renderer.materials;
+				materials1[0] = wireframe;
+				_renderer.materials = materials1;
 				break;
 			case MLHandKeyPose.Thumb:
-				_renderer.enabled = false;
+				Material[] materials2 = _renderer.materials;
+				materials2[0] = occlusion;
+				_renderer.materials = materials2;
 				break;
 		}
 	}
